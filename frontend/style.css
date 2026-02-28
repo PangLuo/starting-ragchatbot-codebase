@@ -102,9 +102,16 @@ body {
   padding: 0;
 }
 
-/* Header - Hidden */
+/* Header */
 header {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  text-align: center;
 }
 
 header h1 {
