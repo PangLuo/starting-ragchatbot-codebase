@@ -1,6 +1,23 @@
 // API base URL - use relative path to work from any host
 const API_URL = '/api';
 
+// Theme management
+function initTheme() {
+    // Theme is already applied by the inline script in <head>, just wire up the button
+}
+
+function toggleTheme() {
+    const html = document.documentElement;
+    const isLight = html.getAttribute('data-theme') === 'light';
+    if (isLight) {
+        html.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        html.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }
+}
+
 // Global state
 let currentSessionId = null;
 
@@ -17,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     courseTitles = document.getElementById('courseTitles');
     
     setupEventListeners();
+    initTheme();
     createNewSession();
     loadCourseStats();
 });
@@ -31,6 +49,7 @@ function setupEventListeners() {
     
     
     document.getElementById('newChatButton').addEventListener('click', createNewSession);
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
     // Suggested questions
     document.querySelectorAll('.suggested-item').forEach(button => {
